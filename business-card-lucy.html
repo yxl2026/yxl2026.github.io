@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徐芳群 Lucy - 产品总监 - 金源宝创（名片）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: #e8eaed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        h1.page-title {
+            color: #333;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ===== 名片通用尺寸 ===== */
+        .card-wrapper {
+            text-align: center;
+        }
+        .card-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .business-card {
+            width: 90mm;
+            height: 54mm;
+            border-radius: 4mm;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 28px rgba(10, 22, 40, 0.25);
+        }
+
+        /* ==================== 正面样式 ==================== */
+        .card-front {
+            background: linear-gradient(145deg, #0a1628 0%, #12203a 45%, #0d1a2e 100%);
+            padding: 5mm 7mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 正面顶部金色装饰线 */
+        .card-front::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3mm;
+            background: linear-gradient(90deg, #c9a227, #f0d77a, #c9a227);
+        }
+
+        /* 公司名 */
+        .front-company {
+            margin-top: 3.5mm;
+        }
+        .front-company-name {
+            color: #d4a843;
+            font-size: 9pt;
+            font-weight: 700;
+            letter-spacing: 1.5pt;
+            line-height: 1.4;
+        }
+        .front-company-sub {
+            color: rgba(200,207,216,0.55);
+            font-size: 6pt;
+            letter-spacing: 1pt;
+            margin-top: 0.5mm;
+        }
+
+        /* 分隔线 */
+        .front-divider {
+            height: 0.3pt;
+            background: linear-gradient(90deg, transparent, rgba(212,168,67,0.35), transparent);
+            margin: 2.5mm 0;
+        }
+
+        /* 姓名 + 职位 */
+        .front-name-area {
+            text-align: center;
+            padding: 2mm 0;
+        }
+        .front-name-cn {
+            color: #ffffff;
+            font-size: 18pt;
+            font-weight: 700;
+            letter-spacing: 4pt;
+        }
+        .front-title {
+            display: inline-block;
+            color: #d4a843;
+            font-size: 8.5pt;
+            font-weight: 500;
+            letter-spacing: 2pt;
+            margin-top: 1.5mm;
+            padding: 0.8mm 4mm;
+            border-top: 0.4pt solid rgba(212,168,67,0.5);
+            border-bottom: 0.4pt solid rgba(212,168,67,0.5);
+        }
+
+        /* 联系信息 */
+        .front-contacts {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap-x: 2.5mm;
+            gap-y: 1.2mm;
+            align-items: baseline;
+        }
+        .contact-lbl {
+            color: #d4a843;
+            font-size: 6.5pt;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .contact-val {
+            color: #c8cfd8;
+            font-size: 6.5pt;
+            line-height: 1.3;
+            word-break: break-all;
+        }
+        .contact-val a { color: #c8cfd8; text-decoration: none; }
+
+        /* 右下角装饰圆 */
+        .front-accent-circle {
+            position: absolute;
+            right: -12mm;
+            bottom: -12mm;
+            width: 26mm;
+            height: 26mm;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%);
+        }
+
+        /* ==================== 反面样式 ==================== */
+        .card-back {
+            background: linear-gradient(145deg, #0a1628 0%, #132240 50%, #0b1729 100%);
+            padding: 5mm 7mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 反面顶部金色装饰线 */
+        .card-back::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3mm;
+            background: linear-gradient(90deg, #c9a227, #f0d77a, #c9a227);
+        }
+
+        /* Slogan */
+        .back-slogan {
+            color: #d4a843;
+            font-size: 11pt;
+            font-weight: 700;
+            letter-spacing: 3pt;
+            margin-bottom: 1mm;
+        }
+        .back-slogan-en {
+            color: rgba(200,207,216,0.6);
+            font-size: 6.5pt;
+            letter-spacing: 1.5pt;
+            margin-bottom: 5mm;
+        }
+
+        /* 品牌标签 */
+        .back-brand-label {
+            color: rgba(200,207,216,0.5);
+            font-size: 6.5pt;
+            letter-spacing: 2pt;
+            margin-bottom: 3mm;
+        }
+
+        /* 品牌 LOGO 区域 */
+        .brand-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8mm;
+            margin-bottom: 5mm;
+        }
+        .brand-logos img {
+            height: 9mm;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* 底部公司名 */
+        .back-company-name {
+            color: rgba(200,207,216,0.4);
+            font-size: 6pt;
+            letter-spacing: 1pt;
+        }
+
+        /* 装饰元素 */
+        .back-accent-ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 42mm;
+            height: 42mm;
+            border-radius: 50%;
+            border: 0.3pt solid rgba(212,168,67,0.08);
+        }
+
+        /* 打印控制区 */
+        .print-controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-print {
+            padding: 10px 32px;
+            background: linear-gradient(135deg, #0a1628, #163054);
+            color: #d4a843;
+            border: 1px solid rgba(212,168,67,0.3);
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-print:hover {
+            background: linear-gradient(135deg, #12203a, #1a3a60);
+            box-shadow: 0 4px 16px rgba(10,22,40,0.3);
+        }
+        .print-hint {
+            color: #888;
+            font-size: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            h1.page-title, .print-controls, .print-hint, .card-label { display: none !important; }
+            .cards-container { gap: 0; }
+            .business-card { box-shadow: none; page-break-inside: avoid; }
+            .card-wrapper { page-break-after: always; }
+            .card-wrapper:last-child { page-break-after: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="page-title">🎴 金源宝创 · 徐芳群 名片</h1>
+
+    <div class="cards-container">
+
+        <!-- ============ 正面 ============ -->
+        <div class="card-wrapper">
+            <div class="card-label">— 正面 —</div>
+            <div class="business-card card-front">
+                <div class="front-accent-circle"></div>
+
+                <!-- 公司名称 -->
+                <div class="front-company">
+                    <div class="front-company-name">金源宝创（深圳）科技有限公司</div>
+                    <div class="front-company-sub">JINYUANBAOCHUAN (SHENZHEN) TECHNOLOGY CO., LTD.</div>
+                </div>
+
+                <!-- 分隔线 -->
+                <div class="front-divider"></div>
+
+                <!-- 姓名 + 职位 -->
+                <div class="front-name-area">
+                    <div class="front-name-cn">徐芳群</div>
+                    <div class="front-title">产品总监</div>
+                </div>
+
+                <!-- 分隔线 -->
+                <div class="front-divider"></div>
+
+                <!-- 联系方式 -->
+                <div class="front-contacts">
+                    <span class="contact-lbl">📞 电话</span>
+                    <span class="contact-val">0755-27792652 / 139-2652-1385</span>
+
+                    <span class="contact-lbl">📧 邮箱</span>
+                    <span class="contact-val"><a href="mailto:jyb@jybcszkj.cn">jyb@jybcszkj.cn</a></span>
+
+                    <span class="contact-lbl">🌐 网址</span>
+                    <span class="contact-val"><a href="http://www.jybcszkj.com/" target="_blank">http://www.jybcszkj.com/</a></span>
+
+                    <span class="contact-lbl">📍 地址</span>
+                    <span class="contact-val">深圳市宝安区西乡街道南昌社区固戍二路268号1308</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ 反面 ============ -->
+        <div class="card-wrapper">
+            <div class="card-label">— 反面 —</div>
+            <div class="business-card card-back">
+                <div class="back-accent-ring"></div>
+
+                <!-- Slogan -->
+                <div class="back-slogan">专业芯片销售商 & 方案商</div>
+                <div class="back-slogan-en">Professional Chip Distributor & Solution Provider</div>
+
+                <!-- 品牌标签 -->
+                <div class="back-brand-label">合作品牌 / PARTNER BRANDS</div>
+
+                <!-- 品牌 LOGO -->
+                <div class="brand-logos">
+                    <img src="images/logo-st.png" alt="ST 意法半导体">
+                    <img src="images/logo-guomin.png" alt="国民技术">
+                    <img src="images/logo-digi.png" alt="Digi International">
+                </div>
+
+                <!-- 底部公司名 -->
+                <div class="back-company-name">金源宝创（深圳）科技有限公司</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 打印控制 -->
+    <div class="print-controls">
+        <button class="btn-print" onclick="window.print()">🖨️ 打印名片（双面）</button>
+    </div>
+    <div class="print-hint">打印时选择「双面打印」→ 纸张裁切为 90mm × 54mm 标准名片尺寸</div>
+
+</body>
+</html>
